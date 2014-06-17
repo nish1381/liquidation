@@ -1,0 +1,689 @@
+.account-list{
+	background: #eee;
+	border-radius: 0 3px 3px 3px;
+	-moz-border-radius: 0 3px 3px 3px;
+	-webkit-border-radius: 0 3px 3px 3px;
+	font-size: 13px;
+	line-height: 15px;
+	list-style: none;
+	margin: 0 auto;
+	max-width: 869px;
+	padding: 15px 16px 16px 14px;
+	position: relative;
+}
+.account-list li{margin: 15px 0 0;}
+.account-list li:first-child{margin: 0;}
+.account-list h3,
+.account-list > li > a{
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background: #f9f9f9;
+	color: #999;
+	display: block;
+	max-width: 185px;
+	padding: 13px 10px 14px;
+	text-decoration: none;
+}
+.account-list h3{
+	background: #fff;
+	color: #79b523;
+	font:600  13px/15px'Open Sans', Arial, Helvetica, sans-serif;
+	line-height: 15px;
+	margin: 0;
+	padding: 14px 10px 13px;
+}
+.account-list > li.hovered > a,
+.account-list > li:hover > a,
+.account-list > li > a:hover{
+	background: #fff;
+	color: #818a90;
+	font-weight: 600;
+	outline: none;
+}
+.account-list > li > a:active,
+.account-list > li > a:focus{outline: none;}
+.account-list > li.hovered > a{
+	border-radius: 3px 0 0 3px;
+	-moz-border-radius: 3px 0 0 3px;
+	-webkit-border-radius: 3px 0 0 3px;
+	max-width: 200px;
+}
+.account-list li.hovered .drop-down{display:block;}
+.account-list .drop-down{
+	background: #fff;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	bottom: 16px;
+	color: #999;
+	display: none;
+	font-size: 14px;
+	left: 234px;
+	line-height: 17px;
+	padding: 16px 15px;
+	position: absolute;
+	right: 16px;
+	top: 15px;
+}
+.account-list > li.month.hovered .drop-down{
+	border-radius: 3px 3px 3px 0;
+	-moz-border-radius: 3px 3px 3px 0;
+	-webkit-border-radius: 3px 3px 3px 0;
+}
+.account-list .overview .drop-down{padding: 15px;}
+.account-list .agents .drop-down{padding: 16px;}
+.account-list .transactions .drop-down{padding: 15px;}
+.account-list .dispute .drop-down{padding: 12px 15px 6px;}
+.account-list h4{
+	color: #2ca7f5;
+	font: 600 14px/16px 'Open Sans', Arial, Helvetica, sans-serif;
+	margin: 0 0 12px;
+}
+.account-list .agents h4{
+	border-bottom: 2px solid #ECF0F1;
+	margin: 0 0 10px;
+	padding: 0 0 12px;
+}
+.account-list .dispute .frame h4{margin:0 0 1px;}
+.account-list .dispute h4{margin: 0 0 13px;}
+.account-list .overview h4{margin: 0 0 13px;}
+.account-list .transactions h4{margin: 0 0 13px;}
+.account-list .transactions .row:first-child h4{
+	float: left;
+	margin: 0;
+	max-width: 50%;
+	padding: 11px 0 0;
+}
+.account-list .dispute .frame,
+.account-list .transactions .frame,
+.account-list .frame,
+.account-list .active-auctions .frame{
+	border-top: 2px solid #ECF0F1;
+	margin: 15px 0 0;
+	padding: 13px 0 0;
+}
+.account-list .dispute .frame{
+	margin: 12px 0 0;
+	padding: 12px 0 0;
+}
+.account-list .frame{padding: 12px 0 0;}
+.account-list .frame:first-child,
+.account-list .active-auctions .frame:first-child{
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+.account-list .transactions .frame.alt{
+	margin: 10px 0 0;
+	padding: 12px 0 0;
+}
+.account-list .dispute .frame.alt{
+	margin: 0;
+	padding: 10px 4px 0 1px;
+}
+.account-list .block-grey{padding: 12px 15px 14px;}
+.account-list  .transactions .block-grey{padding: 12px 15px 13px;}
+.account-list .active-auctions ul{
+	font-size: 14px;
+	line-height: 16px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.account-list .active-auctions li{
+	background: #f9f9f9;
+	margin: 15px 0 0;
+	padding: 13px 15px 13px;
+}
+.account-list .active-auctions li:first-child{margin: 0;}
+.account-list .overview .drop-down{line-height: 16px;}
+.account-list .sign .intro{
+	border-bottom: 2px solid #ECF0F1;
+	border-top: 2px solid #ECF0F1;
+	display: block;
+	margin: 0 0 12px;
+	padding: 12px 1px;
+}
+.account-list .dispute .btn-drop,
+.account-list .sign .btn-drop{
+	left: 50%;
+	margin: 0 0 0 -136px;
+	right: 0;
+}
+.select-alert{
+	display: block;
+	margin: 0 0 12px;
+	padding: 0 1px;
+}
+.select-alert span{color:#6c767d;}
+.new-letter .container{
+	background: #f9f9f9;
+	margin: 15px 0 0;
+	padding: 11px 11px 10px;
+	position: relative;
+}
+.new-letter .container.alt{padding: 12px 11px 5px;}
+.new-letter .container:first-child{margin: 0;}
+.new-letter .row .holder{
+	float: left;
+	width: 370px;
+}
+.dates{
+	color: #6c767d;
+	float: right;
+	font-style: normal;
+	font-weight: 600;
+	text-align: right;
+	width: 160px;
+}
+.new-letter{
+	background: #fff;
+	padding: 0 0 15px;
+}
+.new-letter .checkboxAreaChecked, .new-letter .checkboxArea{
+	background: #fff;
+	float: left;
+	margin: 0 10px 0 0;
+}
+.new-letter label{
+	color: #6c767d;
+	display:block;
+	font-weight: 600;
+	margin: 1px 0 0;
+	overflow: hidden;
+}
+.new-letter .container.alt .row .frame{
+	padding: 0;
+	border: none;
+}
+.new-letter .container.alt label{
+	color: #999;
+	font-weight: 400;
+	margin: 0 0 0 10px;
+	max-width: 94px;
+}
+.new-letter .container span{
+	display:block;
+	margin: 8px 0 0;
+	padding: 0 1px;
+}
+.new-letter .container.alt span{margin: 0 0 13px;}
+.new-letter .container.alt .row{
+	margin: 0 0 10px;
+	padding: 0 1px;
+}
+.new-letter .container .heading{
+	color:#6c767d;
+	display:block;
+	margin: 0 0 3px;
+}
+.new-letter .container.alt .frame{
+	float: left;
+	margin: 0 0 0 10px;
+	min-width: 130px;
+}
+.new-letter .container.alt .frame{margin: 0;}
+.new-letter input[type="submit"]{
+	border: none;
+	color: #f2f5fa;
+	cursor: pointer;
+	float: right;
+	height: 42px;
+	margin: 15px 0 0;
+	min-width: 114px;
+}
+.agents p{margin: 0 0 16px;}
+.overview p{margin: 0 0 18px;}
+.block-grey,
+.overview strong,
+.agents strong{color: #6c767d;}
+.filter-form  select{width: 172px;}
+.filter-form{
+	float:right;
+	position: relative;
+}
+.filter-form .selectArea .center{padding: 12px 14px;}
+.transactions p{margin: 0;}
+.dispute .alt-1 p{margin: 0 0 16px;}
+.dispute ul{
+	list-style: none;
+	margin: 0 0 17px;
+	padding:0;
+}
+.dispute ul strong{
+	color: #818a90;
+	font-weight: 600;
+}
+.dispute li{margin: 17px 0 0;}
+.dispute li:first-child{margin: 0;}
+.info-form{
+	color: #999;
+	position: relative;
+}
+.dispute .info-form .frame{
+	border-top: 2px solid #ECF0F1;
+	margin: 12px 0 0;
+	padding: 17px 0 3px;
+}
+.dispute .info-form .frame:first-child{padding: 12px 0 3px;}
+.personal-info .info-form{padding: 0;}
+.personal-info .info-form .frame{
+	margin: 12px 0 0;
+}
+.personal-info .info-form .frame:first-child{
+	border: none;
+	padding-top: 0;
+}
+.info-form strong,
+.info-form label{
+	color: #6c767d;
+	display: block;
+	font-weight: 600;
+	margin: 0 1px 12px;
+}
+.info-form strong{margin: 0 1px 11px;}
+.info-form select{width: 100%;}
+.info-form .holder{
+	float: left;
+	width: 33.3%;
+}
+.info-form .holder:first-child{margin:0 0 0 ;}
+.account-list .dispute .frame .row{padding: 0 0 5px;}
+.info-form .jcf-fake-input,
+.info-form .row  label,
+.info-form .row .holder label{
+	color: #999;
+	float: left;
+	font-weight: 400;
+	margin: 12px 0 0 28px;
+}
+.info-form .row .holder label{
+	display: block;
+	margin: 2px 0 0;
+	max-width: 174px;
+	overflow: hidden;
+}
+.info-form input[type="text"],
+.info-form input[type="tel"],
+.info-form input[type="password"],
+.info-form input[type="email"]{
+	display: block;
+	width: 100%;
+}
+.info-form .checkboxAreaChecked, .info-form .checkboxArea{
+	float: left;
+	margin: 0 7px 0 0;
+}
+.info-form p{margin: 0 0 9px;}
+.info-form .frame.alt{
+	margin: 0;
+	overflow: hidden;
+	padding: 15px 0 0;
+}
+.info-form input[type="submit"]{
+	border: 0;
+	color: #f2f5fa;
+	cursor: pointer;
+	float: right;
+	height: 42px;
+	margin: 0 0 9px;
+	min-width: 190px;
+}
+.info-form .file-area .jcf-upload-button{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	min-width: 134px;
+	background: #6c767d;
+	color: #fff;
+	float: left;
+	height: 42px;
+	margin: 0 0 9px;
+	max-height: 42px;
+	padding: 13px 3px 9px;
+	text-align: center;
+}
+.info-form .file-area.jcf-class-large .jcf-upload-button{
+	margin: 0 0 12px;
+	min-width: 140px;
+}
+.info-form .file-area.jcf-class-large .jcf-fake-input{
+	margin-left: 19px;
+}
+.info-form .btn.grey.alt{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	display: inline-block;
+	float: none;
+	height: 42px;
+	margin: 1px 0 10px;
+	min-width: 170px;
+	padding: 13px 20px;
+	text-align: center;
+	vertical-align: top;
+}
+.info-form .jcf-unselectable{
+	display: inline-block;
+	margin: 0;
+	padding: 1px 0 0;
+	vertical-align: middle;
+}
+.info-form .row .jcf-fake-input{
+	color: #999;
+	float: right;
+	font-weight: 400;
+	margin: 12px 0 0 28px;
+}
+.info-form .row .jcf-fake-input em{font-style: normal;}
+@media only screen and (max-width:959px){
+	.account-list{padding: 15px 15px 16px;}
+	.account-list h3,
+	.account-list > li > a{
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		max-width: 100%;
+		padding: 13px 13px 14px;
+		width: 100%;
+	}
+	.account-list > li.hovered > a,
+	.account-list > li:hover > a,
+	.account-list > li > a:hover{
+		border-radius: 3px 3px 0 0;
+		-moz-border-radius: 3px 3px 0 0;
+		-webkit-border-radius: 3px 3px 0 0;
+		max-width: 100%;
+		width: 100%;
+	}
+	.account-list > li > a > .ico{
+		background: url(../../images/decoration.png) no-repeat -26px -35px;
+		float: right;
+		height: 6px;
+		margin: 5px;
+		overflow: hidden;
+		text-indent: -9999px;
+		width: 10px;
+	}
+	.account-list > li.hovered > a .ico,
+	.account-list > li:hover > a .ico,
+	.account-list > li > a:hover .ico{background-position: -26px -47px;}
+	.account-list .drop-down{
+		left: 0;
+		padding: 0 15px 16px;
+		position: relative;
+		right: 0;
+		top: 0;
+	}
+	.account-list .active-auctions .frame:first-child{
+		border-top: 2px solid #ECF0F1;
+		padding: 13px 0 0;
+	}
+	.dates{
+		right: 15px;
+		top: 9px;
+	}
+	.new-letter input[type="submit"]{
+		border-radius: 3px 3px 0 0;
+		-moz-border-radius: 3px 3px 0 0;
+		-webkit-border-radius: 3px 3px 0 0;
+		margin: 16px 0 0;
+		padding: 12px 20px;
+		width: 100%;
+	}
+	.new-letter .holder{margin: 0 -1px 0 1px;}
+	.new-letter{
+		padding: 0;
+		position: relative;
+	}
+	.account-list .sign .drop-down{padding: 0 15px 13px;}
+	.account-list .agents .drop-down{padding: 13px 15px 1px;}
+	.account-list .transactions .drop-down{padding: 0 14px 14px 15px;}
+	.account-list .dispute .drop-down{padding: 13px 13px 15px;}
+	.account-list .dispute .drop-down{padding: 13px 13px 15px;}
+	.account-list .dispute .drop-down:after,
+	.account-list .agents .drop-down:after{
+		background: #ECF0F1;
+		content: '';
+		height: 2px;
+		left: 15px;
+		position: absolute;
+		right: 16px;
+		top: -1px;
+	}
+	.account-list .frame,
+	.account-list .frame:first-child{
+		border-top: 2px solid #ECF0F1;
+		margin: 15px 0 0;
+		padding: 12px 0 0;
+	}
+	.account-list .frame:first-child{margin: 0;}
+	.account-list .overview .drop-down{padding: 0 15px 15px;}
+	.account-list .block-grey{padding: 12px 15px 15px;}
+	.account-list .overview .frame:first-child .block-grey{padding: 11px 16px 15px;}
+	.account-list .transactions .holder{
+		border-top: 2px solid #ECF0F1;
+		padding: 15px 0 0;
+	}
+	.filter-form{
+		position: relative;
+		width: 37.311%;
+	}
+	.filter-form  select{
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		width: 100% !important;
+	}
+	.filter-form .selectArea{width: 100% !important;}
+	.account-list .transactions .frame.alt{
+		border: 0;
+		margin: 0;
+		padding: 7px 0 0;
+	}
+	.account-list .transactions .block-grey{padding: 11px 16px 14px;}
+	.info-form{padding: 0 2px;}
+	.account-list .dispute .frame.alt{
+		margin: 0 3px 0 1px;
+		padding: 12px 4px 0 1px;
+	}
+	.account-list .dispute .drop-down:after{right: 15px;}
+	.info-form .frame{padding: 12px 0 3px;}
+	.account-list .dispute h4{margin: 0 1px 13px;}
+	.dispute .info-form .frame{
+		margin: 12px 0 0;
+		padding: 12px 0 0;
+	}
+	.dispute .info-form .frame.alt{padding: 15px 0 0;}
+	.info-form strong{margin: 0 0 12px;}
+	.info-form .holder:first-child{margin: 0;}
+	.account-list .dispute .frame .row{padding: 0 0 8px;}
+	.info-form textarea{width: 100% !important;}
+	.info-form  input[type="submit"]{width: 100%;}
+	.info-form .file-area .jcf-upload-button{margin: 0 0 6px;}
+	.info-form .btn.save{
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		float: none !important;
+		height: 42px;
+		overflow: hidden;
+		text-align: center;
+		width: 100%;
+	}
+	.info-form .jcf-unselectable{padding: 1px 0 0 1px;}
+	.info-form .btn.grey.alt{width: 100%;}
+	.info-form input[type="submit"]{margin: 0;}
+	.new-letter .btn-drop{padding: 22px 0 0;}
+}
+@media only screen and (max-width:767px){
+	.account-list{padding: 15px 16px 16px 14px;}
+	.account-list.ico{margin: 5px 2px 5px 5px;}
+	.account-list .drop-down{top: -1px;}
+	.account-list .active-auctions li{padding: 14px 3px 12px 15px;}
+	.account-list .active-auctions h4{margin: 0 0 12px -1px;}
+	.account-list .transactions .row:first-child h4{max-width: 100%;}
+	.new-letter .container{padding: 11px 11px 13px;}
+	.new-letter input[type="submit"]{margin: 15px 0 0;}
+	.new-letter .holder{margin: 0;}
+	.account-list .sign .drop-down{padding: 0 15px 15px;}
+	.new-letter .container .heading{margin: 0 0 2px;}
+	.heading{padding: 0 1px;}
+	.container.alt-1 .dates{top: 12px;}
+	.account-list .overview .drop-down{line-height: 17px;}
+	.account-list .agents .drop-down:after{top: 0;}
+	.account-list .agents .drop-down{padding: 14px 14px 1px;}
+	.account-list .block-grey{padding: 13px 15px 15px;}
+	.account-list .overview .frame:first-child .block-grey{padding: 13px 15px 12px;}
+	.overview p{margin: 0 0 16px;}
+	.account-list .transactions .holder{padding: 12px 0 0;}
+	.account-list .transactions .holder h4{
+		float:none;
+		margin: 0 0 13px;
+		padding: 0;
+	}
+	.filter-form{
+		float:none;
+		width: 100%;
+	}
+	.filter-form .selectArea .center{padding: 12px 9px;}
+	.account-list .transactions .row:first-child h4{
+		float: none;
+		margin: 0 0 13px;
+	}
+	.account-list .transactions .drop-down{padding: 0 14px 15px 15px;}
+	.account-list .transactions .frame.alt{
+		border-top: 2px solid #ECF0F1;
+		margin: 10px 0 0;
+		padding: 12px 0 0;
+	}
+	.account-list .transactions .block-grey{padding: 13px 15px;}
+	.account-list .transactions .frame.alt .block-grey{padding: 13px 15px 12px;}
+	.account-list .dispute .drop-down{padding: 14px 13px 15px;}
+	.account-list .dispute .drop-down:after{top: 0;}
+	.account-list .dispute .frame.alt{
+		margin: 0 2px 0 1px;
+		padding: 12px 4px 0 0;
+	}
+	.dispute li{margin: 16px 0 0;}
+	.info-form strong, .info-form label{margin: 0 0 12px;}
+	.info-form strong{margin: 0 0 11px;}
+	.info-form .row label, .info-form .row .holder label{margin: 2px 0 0;}
+	.info-form .checkboxAreaChecked, .info-form .checkboxArea{margin: 0 4px 0 0;}
+	.account-list .dispute .frame .row{padding: 0 0 3px;}
+	.info-form textarea{height: 112px;}
+	.info-form .jcf-unselectable{padding: 2px 0 0 1px;}
+	.info-form .file-area .jcf-upload-button{margin: 0 0 10px;}
+	.info-form .btn.grey.alt{margin: 2px 0 12px;}
+	.new-letter .row .holder{width: 310px;}
+}
+@media only screen and (max-width:718px){
+	.info-form .row label, .info-form .row .holder label{margin: 2px 0 0;}
+	.info-form .checkboxAreaChecked, .info-form .checkboxArea{margin: 0 2px 0 0;}
+	.info-form .holder{width: 26%;}
+	.info-form .holder.alt{width: 36%;}
+	.info-form .holder:first-child{width: 38%;}
+}
+@media only screen and (max-width:639px){
+	.account-list .active-auctions h4{margin: 0 0 12px -1px;}
+	.account-list .active-auctions li{padding: 11px 5px 14px 12px;}
+	.account-list .active-auctions ul{line-height: 17px;}
+	.dates{
+		float: none;
+		display:block;
+		margin: 0 0 0 -1px;
+		padding: 9px 0 0;
+		position: static;
+		right: 0;
+		text-align: left;
+		top: 0;
+	}
+	.new-letter .container{padding: 11px 11px 12px;}
+	.new-letter .container .heading{margin: 0 0 2px 1px;}
+	.new-letter .container.alt span{margin: 0 0 12px;}
+	.container.alt-1 .dates{padding: 2px 2px 0;}
+	.new-letter .container.alt{padding: 12px 11px;}
+	.account-list .agents .drop-down{padding: 14px 13px 1px;}
+	.account-list .transactions .block-grey{padding: 13px 15px 12px;}
+	.account-list .dispute .drop-down{padding: 14px 13px 15px 14px;}
+	.account-list .dispute .frame.alt{padding: 12px 4px 0 1px;}
+	.info-form{padding: 0 2px 0 1px;}
+	.info-form strong, .info-form label{margin: 0 0 12px 1px;}
+	.info-form .holder.alt,
+	.info-form .holder:first-child,
+	.info-form .holder{
+		float:none;
+		margin: 10px 0 0;
+		width: 100%;
+	}
+	.info-form .holder:first-child{margin: 0;}
+	.info-form .row label{margin: 2px 0 0 7px;}
+	.info-form .row .holder label{margin: 2px 0 0;}
+	.info-form .checkboxAreaChecked, .info-form .checkboxArea{margin: 0 7px 0 0;}
+	.info-form .holder{margin: 15px 0 0;}
+	.info-form textarea{height: 147px;}
+	.personal-info .info-form .tax-exempt,
+	.personal-info .info-form .credit-card{display: block;}
+	.dispute .info-form .frame.alt{
+		margin: 12px -2px 0 0;
+		padding: 15px 0 0 2px;
+	}
+	.info-form .jcf-unselectable{padding: 1px 0 0 3px;}
+	.info-form .file-area .jcf-upload-button{margin: 0 0 11px;}
+	.info-form .btn.grey.alt{margin: 1px 0 12px 2px;}
+	.new-letter .row .holder{width: 100%;}
+}
+@media only screen and (max-width:479px){
+	.account-list{padding: 15px 15px 16px;}
+	.account-list .active-auctions h4{margin: 0 0 12px;}
+	.account-list .active-auctions li{padding: 13px 7px 13px 15px;}
+	.account-list .sign .intro{
+		margin: 0 0 12px;
+		padding: 12px 0 13px;
+	}
+	.select-alert{
+		margin: 0 0 18px;
+		padding: 0 2px 0 0;
+	}
+	.new-letter .container{padding: 12px 10px;}
+	.new-letter .container span{margin: 9px 0 0;}
+	.new-letter .container .heading{margin: 0 0 9px;}
+	.new-letter .container.alt .row{padding: 0;}
+	.new-letter .container.alt label{margin: 2px 0 0 3px;}
+	.new-letter .container.alt .frame{min-width: 98px;}
+	.new-letter .container.alt .frame:first-child{
+		min-width: 90px;
+		max-width: 90px;
+	}
+	.new-letter .container.alt{padding: 12px 4px 13px 11px;}
+	.new-letter .checkboxAreaChecked, .new-letter .checkboxArea{margin: 0 5px 0 0;}
+	.account-list .agents .drop-down{padding: 14px 8px 1px 15px;}
+	.account-list .overview h4{
+		line-height: 17px;
+		margin: 0 -4px 12px 0;
+	}
+	.account-list .block-grey{padding: 13px 8px 15px 15px;}
+	.account-list .overview .frame:first-child .block-grey{padding: 13px 7px 13px 15px;}
+	.overview p{margin: 0 0 17px;}
+	.account-list .transactions h4{line-height: 17px;}
+	.account-list .transactions .holder h4{line-height: 16px;}
+	.account-list .transactions h4{margin: 0 0 12px;}
+	.dispute .alt-1 p{margin: 0 0 17px;}
+	.dispute li{margin: 17px 0 0;}
+	.info-form strong, .info-form label{margin: 0 0 11px 1px;}
+	.info-form textarea{height: 182px;}
+	.personal-info .info-form .multistate{display: block;}
+	.dispute .info-form .frame.alt{
+		margin: 12px 0 0;
+		padding: 15px 0 0;
+	}
+	.info-form .jcf-unselectable{padding: 1px 0 0 1px;}
+	.info-form .row .jcf-fake-input{
+		margin: 12px 0 0 8px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 50px;
+	}
+}

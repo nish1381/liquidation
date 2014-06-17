@@ -1,0 +1,35 @@
+** Version 1.0.8 **
+	- Fix: Problem with price on regular products
+
+** Version 1.0.7 **
+	- Add: Send mail to admin when auction is finished
+
+** Version 1.0.6 **
+	- Add: Do not show auctions on product category page option
+	- Add: Do not show auctions on product tag page option
+	- Fix: email templates path
+
+** Version 1.0.5 **
+	- Fix: starting bid bug
+	- Fix: product copying bug
+	
+** Version 1.0.4 **
+	- Add: manually delete any bid
+
+** Version 1.0.3 **
+	- Fix: problem with checkout
+	- Fix: problem with table prefix
+	- Fix: problems with reserve price
+	- Fix: displaying timezone in UTC format	
+	- Fix: language (thanx to artsmart)
+	
+** Version 1.0.2 **
+	- Fix: saving decimal bid to log
+	- Fix: problems with translations
+	
+** Version 1.0.1 **
+ 	- Add: support for woocommerce > 2.1
+	- Fix: couple minor bugs
+
+** Version 1.0.0 **
+   	- Initial release
