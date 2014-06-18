@@ -149,13 +149,13 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 											<li class="m-hidden">
 												<dl class="fourth-line">
 													<dt class="xl-hidden l-visible">Starting BID:</dt>
-													<dd><?php echo $product->get_price_html()?></dd>
+													<dd><?php echo get_option('woocommerce_currency')?><?php the_field('_auction_start_price'); ?></dd>
 												</dl>
 											</li>
 											<li class="m-hidden">
 												<dl class="fifth-line">
 													<dt class="xl-hidden l-visible">MRSP:</dt>
-													<dd><?php echo get_post_meta($post->ID, '_dl_msrp', true )?></dd>
+													<dd><?php echo get_option('woocommerce_currency')?><?php echo get_post_meta($post->ID, '_dl_msrp', true )?></dd>
 												</dl>
 											</li>
 											<li class="sixth">
@@ -179,7 +179,7 @@ if ( 0 == $woocommerce_loop['loop'] % $woocommerce_loop['columns'] )
 											<li class="l-hidden m-visible">
 												<dl class="tenth-line">
 													<dt class="xl-hidden l-visible">End Time:</dt>
-													<dd><span class="kind"><?php the_field('field_5395ec92b7fff'); ?></span></dd>
+													<dd><span class="kind"><?php the_field('_auction_dates_to'); ?></span></dd>
 												</dl>
 											</li>
 										</ul>
