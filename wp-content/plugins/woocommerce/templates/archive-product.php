@@ -72,14 +72,7 @@ get_header( 'shop' ); ?>
 
 		<?php endif; ?>
 
-	<?php
-		/**
-		 * woocommerce_after_main_content hook
-		 *
-		 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
-		 */
-		do_action( 'woocommerce_after_main_content' );
-	?>
+	
 
 	<?php
 		/**
@@ -131,7 +124,14 @@ get_header( 'shop' ); ?>
 			</div>
 			<!--box popular categories ends-->
 
-
+	<?php
+		/**
+		 * woocommerce_after_main_content hook
+		 *
+		 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+		 */
+		do_action( 'woocommerce_after_main_content' );
+	?>
 			<div class="box">
 				<section class="testimonials">
 					<h2>Customer testimonials</h2>

@@ -818,6 +818,13 @@ function woo_remove_product_tabs( $tabs ) {
 
 // Remove default WooCommerce breadcrumbs and add Yoast ones instead
 remove_action( 'woocommerce_before_main_content','woocommerce_breadcrumb', 20, 0);
+$slug = basename(get_permalink());
+if($slug=="")
+add_action('woocommerce_after_main_content','woocommerce_bottom_product_display',15);
+
+function woocommerce_bottom_product_display(){
+	wc_get_template( 'single-product/static_blog_customer.php' );
+}
 
 ?>
 
