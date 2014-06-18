@@ -1,3 +1,6 @@
+.first-form.search-form{float: left;width: 47%;}
+.second-form.search-form{width: 100%;position: absolute;left: 47%;top: 14px;max-width: 901px;}
+
 #wrapper{
 	overflow: hidden;
 	position: relative;
@@ -228,17 +231,20 @@
 .register-panel .list-technical .login-link.log-in a:hover{background: url(../images/sprite.png) -48px -184px no-repeat;}
 @media only screen and (max-width: 959px){
 	#header{padding: 10px 15px 10px 16px;}
-	#header .container{position: static;}
+	#header .container{position: static;width: 100%;}
 	.logo{
 		left: 72px;
 		margin: 0;
 		top: 12px;
 	}
+    #nav{margin: 25px 0 0 32px;}
 	#nav ul{padding: 0;}
 	#nav li{
 		float: none;
 		margin: 0;
 		position: static;
+        display: inline-block;
+        padding: 0 10px;
 	}
 	#nav li:after{background: none;}
 	#nav .opener{
@@ -390,6 +396,8 @@
 .box.form-block{
 	padding: 14px 15px 14px 14px;
 	max-width: 901px;
+    overflow-x: hidden;
+    position: relative;
 }
 .search-form{position: relative;}
 .info-form ::-webkit-input-placeholder,
@@ -435,14 +443,14 @@
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	float: left;
-	margin: 0 0 0 1.443%;
+    margin: 0 0 0 1.443%;
 }
 .search-form input[type="text"],
 .search-form input[type="search"]{
 	-webkit-appearance: none;
 	float: left;
 	padding: 11px 13px 10px;
-	width: 46.84%;
+	width: 100%;
 }
 
 .search-form input[type="text"]:focus,
@@ -456,9 +464,9 @@ input[type="search"]::-webkit-search-cancel-button {display: none;}
 	cursor: pointer;
 	float: left;
 	height: 42px;
-	margin: 0 0 0 1.56%;
-	padding: 0 20px 0 21px;
-	width: 10.3%;
+    margin: 0 0 0 1.56%;
+    padding: 0 20px 0 21px;
+    width: 10.3%
 }
 @media only screen and (max-width: 959px){
 	#main{
@@ -480,7 +488,7 @@ input[type="search"]::-webkit-search-cancel-button {display: none;}
 	.search-form input[type="text"],
 	.search-form input[type="search"]{
 		padding: 11px 9px 9px;
-		width: 40.22%;
+		/*width: 40.22%;*/
 	}
 	.search-form input[type="submit"]{
 		margin: 0 0 0 1.999%;
@@ -491,6 +499,7 @@ input[type="search"]::-webkit-search-cancel-button {display: none;}
 		right: 11px;
 		top: 19px;
 	}
+    .second-form.search-form{width: 85%;}
 }
 @media only screen and (max-width:767px){
 	#main{padding: 15px 15px 0;}
@@ -498,8 +507,9 @@ input[type="search"]::-webkit-search-cancel-button {display: none;}
 	.search-form input[type="text"],
 	.search-form input[type="search"]{
 		padding: 10px 8px;
-		width: 38.222%;
+		width: 100%;
 	}
+    .second-form.search-form{width: 83%;}
 	.search-form select{width: 21.895% }
 	.search-form .selectArea{margin: 0 0 0 1.755%;}
 	.search-form .selectArea .center{padding: 13px 9px 11px;}
@@ -524,6 +534,14 @@ input[type="search"]::-webkit-search-cancel-button {display: none;}
 		float: none;
 		width: 100%;
 	}
+    .logo{left: 50%;margin-left: -59px;}
+    .first-form.search-form,
+    .second-form.search-form{width: 100%;position: relative;left: 0;top: 0;}
+    .navigation{float: none;margin: 0 -5px;}
+    #nav{width: 100%;clear: both;margin: 40px 0 15px;float: none;}
+    #nav li{display: block;clear: both;float: none;margin: 0;padding: 0;border-bottom: 1px solid #ddd;}
+    #nav li a{display: block;padding: 10px 0 10px 20px;}
+
 	.search-form .selectArea{margin: 0 0 15px;}
 	.search-form .selectArea .center{padding: 13px 15px 11px;}
 	.search-form .selectButton .ico{
