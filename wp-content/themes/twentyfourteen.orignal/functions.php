@@ -803,7 +803,18 @@ function showReadMore($title, $len) {
 // }
 add_filter( 'woocommerce_redirect_single_search_result', '__return_false' );
 
+add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
+ 
+function woo_remove_product_tabs( $tabs ) {
+ 
+    // unset( $tabs['description'] );      	// Remove the description tab
+    unset( $tabs['reviews'] ); 			// Remove the reviews tab
+    unset( $tabs['additional_information'] );  	// Remove the additional information tab
+    unset( $tabs['simle_auction_history'] );  	// Remove the additional information tab
 
+    return $tabs;
+ 
+}
 ?>
 
 
