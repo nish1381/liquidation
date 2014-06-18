@@ -815,6 +815,10 @@ function woo_remove_product_tabs( $tabs ) {
     return $tabs;
  
 }
+
+// Remove default WooCommerce breadcrumbs and add Yoast ones instead
+remove_action( 'woocommerce_before_main_content','woocommerce_breadcrumb', 20, 0);
+
 ?>
 
 
