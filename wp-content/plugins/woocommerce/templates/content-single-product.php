@@ -28,7 +28,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 
 
-
+			<!--box promo starts-->
+			<div class="box promo" itemscope itemtype="http://schema.org/Offer">
+				<h2 class="accessability">Promo info</h2>
+				<p><a href="#"><span itemprop="name">Apple, Samsung, Nintendo</span> - iPad, Tablets, Gaming Systems and Mixed Electronics - 452 Units - Latest Models - Untested Customer Returns - <span itemprop="price">Retail $42,379.80</span></a></p>
+			</div>
+			<!--box promo ends-->
 
 <div class="box proposal-for-auction">
 				<section class="promo-box" itemscope itemtype="http://schema.org/Offer">
