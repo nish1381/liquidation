@@ -666,13 +666,10 @@ case 'register' :
 
 	$user_login = '';
 	$user_email = '';
-	$phone_number = '';
-	$user_pass = '';
 	if ( $http_post ) {
 		$user_login = $_POST['user_login'];
 		$user_email = $_POST['user_email'];
-		$user_pass = $_POST['user_pass'];
-		$errors = register_new_user($user_login, $user_email,$user_pass);
+		$errors = register_new_user($user_login, $user_email);
 		if ( !is_wp_error($errors) ) {
 			$redirect_to = !empty( $_POST['redirect_to'] ) ? $_POST['redirect_to'] : 'wp-login.php?checkemail=registered';
 			wp_safe_redirect( $redirect_to );
@@ -689,63 +686,39 @@ case 'register' :
 	 * @param string $registration_redirect The redirect destination URL.
 	 */
 	$redirect_to = apply_filters( 'registration_redirect', $registration_redirect );
-	//login_header(__('Registration Form'), '<p class="message register">' . __('Register For This Site') . '</p>', $errors);
+	login_header(__('Registration Form'), '<p class="message register">' . __('Register For This Site') . '</p>', $errors);
 ?>
-<?php get_header();  ?>
-<!--box register starts-->
-<div class="box register">
-	<h2>Register</h2>
-	<form name="registerform" id="registerform" class="registration-form" action="<?php echo esc_url( site_url('wp-login.php?action=register', 'login_post') ); ?>" method="post">
-		<fieldset>
-			<div class="row">
-				<div class="col">
-					<label for="user_login"><?php _e('Username') ?>:</label>
-					<input type="text" name="user_login" id="user_login" class="input" value="<?php echo esc_attr(wp_unslash($user_login)); ?>" size="20" />
-				</div>
-				<div class="col">
-					<label for="password"><?php _e('Password') ?>:</label>
-					<input type="password" placeholder="" id="user_pass" name="user_pass">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<label for="user_email"><?php _e('E-mail') ?></label>
-					<input type="text" name="user_email" id="user_email" class="input" value="<?php echo esc_attr(wp_unslash($user_email)); ?>" size="25" />
-				</div>
-				<div class="col">
-					<label for="user_email"><?php _e('Phone') ?>:</label>
-					<input type="text" name="phone_number" id="phone_number" class="input" value="<?php echo esc_attr(wp_unslash($phone_number)); ?>" size="25" />
-				</div>
-			</div>
-			<?php
-			/**
-			 * Fires following the 'E-mail' field in the user registration form.
-			 *
-			 * @since 2.1.0
-			 */
-			do_action( 'register_form' );
-			?>
-			<!-- <p id="reg_passmail"><?php _e('A password will be e-mailed to you.') ?></p> -->
-			<br class="clear" />
-			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
-			<div class="row-2">
-				<input type="submit" name="wp-submit" id="wp-submit" class="btn green" value="<?php esc_attr_e('Register'); ?>" />
-			</div>
-		</fieldset>
-	</form>
-	<div class="holder">
-		<p>By clicking on the “Create Account” button you are bound to the <a href="#">Terms of Service</a> and <a href="#">User Agreement</a> and <a href="#">Privacy Policy</a>.</p>
-		<p>I may receive communications from DirectLiquidation.com and/or The Recon Group Inc., and can change my notification preferences in My Account.</p>
-	</div>
-	<p id="nav">
-	<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in' ); ?></a> |
-	<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" title="<?php esc_attr_e( 'Password Lost and Found' ) ?>"><?php _e( 'Lost your password?' ); ?></a>
-	</p>
-</div>
-<?php get_footer();  ?>
-<?php
-//login_footer('user_login');
 
+<form name="registerform" id="registerform" action="<?php echo esc_url( site_url('wp-login.php?action=register', 'login_post') ); ?>" method="post">
+	<p>
+		<label for="user_login"><?php _e('Username') ?><br />
+		<input type="text" name="user_login" id="user_login" class="input" value="<?php echo esc_attr(wp_unslash($user_login)); ?>" size="20" /></label>
+	</p>
+	<p>
+		<label for="user_email"><?php _e('E-mail') ?><br />
+		<input type="text" name="user_email" id="user_email" class="input" value="<?php echo esc_attr(wp_unslash($user_email)); ?>" size="25" /></label>
+	</p>
+	<?php
+	/**
+	 * Fires following the 'E-mail' field in the user registration form.
+	 *
+	 * @since 2.1.0
+	 */
+	do_action( 'register_form' );
+	?>
+	<p id="reg_passmail"><?php _e('A password will be e-mailed to you.') ?></p>
+	<br class="clear" />
+	<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
+	<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Register'); ?>" /></p>
+</form>
+
+<p id="nav">
+<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in' ); ?></a> |
+<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" title="<?php esc_attr_e( 'Password Lost and Found' ) ?>"><?php _e( 'Lost your password?' ); ?></a>
+</p>
+
+<?php
+login_footer('user_login');
 break;
 
 case 'login' :
@@ -875,34 +848,22 @@ default:
 	if ( $reauth )
 		wp_clear_auth_cookie();
 
-	//login_header(__('Log In'), '', $errors);
-	get_header();
+	login_header(__('Log In'), '', $errors);
+
 	if ( isset($_POST['log']) )
 		$user_login = ( 'incorrect_password' == $errors->get_error_code() || 'empty_password' == $errors->get_error_code() ) ? esc_attr(wp_unslash($_POST['log'])) : '';
 	$rememberme = ! empty( $_POST['rememberme'] );
 ?>
-<div class="holder-container">
-	<div class="box sign">
-		<h2>Sign in now,</h2>
-		<span class="intro">to continue buying, selling and managing your accounts</span>
 
-<form name="loginform" id="loginform"  class="sign-in-form"action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
-	<fieldset>
-		<div class="holder">
-			<div class="row">
-				<label for="user_login"><?php _e('Username') ?></label>
-				<div class="align-left">
-					<input type="text" name="log" id="user_login text1" class="input" value="<?php echo esc_attr($user_login); ?>" size="20" />
-				</div>
-				
-			</div>
-			<div class="row">
-				<label for="user_pass"><?php _e('Password') ?></label>
-				<div class="align-left">
-					<input type="password" name="pwd" id="user_pass text2" class="input" value="" size="20" />
-				</div>
-			</div>
-		</div>
+<form name="loginform" id="loginform" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
+	<p>
+		<label for="user_login"><?php _e('Username') ?><br />
+		<input type="text" name="log" id="user_login" class="input" value="<?php echo esc_attr($user_login); ?>" size="20" /></label>
+	</p>
+	<p>
+		<label for="user_pass"><?php _e('Password') ?><br />
+		<input type="password" name="pwd" id="user_pass" class="input" value="" size="20" /></label>
+	</p>
 	<?php
 	/**
 	 * Fires following the 'Password' field in the login form.
@@ -911,52 +872,35 @@ default:
 	 */
 	do_action( 'login_form' );
 	?>
-	<!-- <p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever" <?php checked( $rememberme ); ?> /> <?php esc_attr_e('Remember Me'); ?></label></p> -->
-		<div class="holder">
-			<input type="submit" name="wp-submit" id="wp-submit" class="btn green button-primary" value="<?php esc_attr_e('Log In'); ?>" />
-	<?php	if ( $interim_login ) { ?>
-			<input type="hidden" name="interim-login" value="1" />
-	<?php	} else { ?>
-			<input type="hidden" name="redirect_to" value="<?php echo esc_attr($redirect_to); ?>" />
-	<?php 	} ?>
-	<?php   if ( $customize_login ) : ?>
-			<input type="hidden" name="customize-login" value="1" />
-	<?php   endif; ?>
-			<input type="hidden" name="testcookie" value="1" />
-		</div>
-	
-	</fieldset>
+	<p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever" <?php checked( $rememberme ); ?> /> <?php esc_attr_e('Remember Me'); ?></label></p>
+	<p class="submit">
+		<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Log In'); ?>" />
+<?php	if ( $interim_login ) { ?>
+		<input type="hidden" name="interim-login" value="1" />
+<?php	} else { ?>
+		<input type="hidden" name="redirect_to" value="<?php echo esc_attr($redirect_to); ?>" />
+<?php 	} ?>
+<?php   if ( $customize_login ) : ?>
+		<input type="hidden" name="customize-login" value="1" />
+<?php   endif; ?>
+		<input type="hidden" name="testcookie" value="1" />
+	</p>
 </form>
-<?php if ( ! $interim_login ) { ?>
 
+<?php if ( ! $interim_login ) { ?>
+<p id="nav">
 <?php if ( ! isset( $_GET['checkemail'] ) || ! in_array( $_GET['checkemail'], array( 'confirm', 'newpass' ) ) ) :
 	if ( get_option( 'users_can_register' ) ) :
 		$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register' ) );
 		/** This filter is documented in wp-login.php */
-		//echo apply_filters( 'register', $registration_url ) . ' | ';
+		echo apply_filters( 'register', $registration_url ) . ' | ';
 	endif;
 	?>
-	<span class="l-hidden">Forgot <a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" title="<?php esc_attr_e( 'Password Lost and Found' ); ?>"><?php _e( 'Password' ); ?></a> or <a href="sign-in-alt.html">Username?</a></span>
+	<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" title="<?php esc_attr_e( 'Password Lost and Found' ); ?>"><?php _e( 'Lost your password?' ); ?></a>
 <?php endif; ?>
-
+</p>
 <?php } ?>
-<strong class="question">If you have additional questions about your account, please contact us at <a href="#">support@Directliquidation.com</a> or <a href="#">(800)&nbsp;498&nbsp;-&nbsp;1909</a></strong>
 
-</div>
-	<!--box registration starts-->
-		<div class="box registration">
-			<h2>Not registered yet?</h2>
-			<span class="intro">Register now and get started today!</span>
-			<ul class="list">
-				<li>Buy or sell inventory at a fraction of wholesale cost.</li>
-				<li>Over 600 product categories.</li>
-				<li>We are publicly traded (NASDAQ, LQDT).</li>
-				<li>More that one million buyers use DirectLiquidation for their inventory needs.</li>
-			</ul>
-			<a href="<?php echo wp_registration_url() ?>" class="btn green">REGISTER NOW</a>
-		</div>
-		<!--box registration ends-->
-</div>
 <script type="text/javascript">
 function wp_attempt_focus(){
 setTimeout( function(){ try{
@@ -993,16 +937,8 @@ try {
 }());
 <?php } ?>
 </script>
-<!--social list starts-->
-<ul class="social-list">
-	<li class="facebook"><a href="#">facebook</a></li>
-	<li class="twitter"><a href="#">twitter</a></li>
-	<li class="google"><a href="#">google</a></li>
-</ul>
-<!--social list ends-->
-<?php
-//login_footer();
 
-get_footer();
+<?php
+login_footer();
 break;
 } // end action switch
