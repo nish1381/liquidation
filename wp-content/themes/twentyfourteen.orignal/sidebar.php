@@ -7,7 +7,7 @@
  * @since Twenty Fourteen 1.0
  */
 ?>
-<div id="secondary">
+<div id="secondary" style="display:none">
 	<?php
 		$description = get_bloginfo( 'description', 'display' );
 		if ( ! empty ( $description ) ) :

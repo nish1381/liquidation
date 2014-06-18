@@ -5,24 +5,38 @@
  * Contains footer content and the closing of the #main and #page div elements.
  *
  * @package WordPress
- * @subpackage Twenty_Fourteen
+ * @subpackage Liqui
  * @since Twenty Fourteen 1.0
  */
 ?>
 
-		</div><!-- #main -->
-
-		<footer id="colophon" class="site-footer" role="contentinfo">
-
-			<?php get_sidebar( 'footer' ); ?>
-
-			<div class="site-info">
-				<?php do_action( 'twentyfourteen_credits' ); ?>
-				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'twentyfourteen' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'twentyfourteen' ), 'WordPress' ); ?></a>
-			</div><!-- .site-info -->
-		</footer><!-- #colophon -->
-	</div><!-- #page -->
-
-	<?php wp_footer(); ?>
+</div>
+		<!--main ends-->
+		<!--footer starts-->
+		<footer id="footer">
+			<div class="container">
+				<h2 class="accessability">Navigation</h2>
+				<strong class="add-logo"><a href="#">Direct Liquidation</a></strong>
+				<nav class="footer-nav">
+					<h3 class="accessability">Add-navigation</h3>
+					<ul>
+						<li><a href="#">Privacy Policy </a></li>
+						<li><a href="#">Terms of Service </a></li>
+						<li><a href="#">Help</a></li>
+						<li><a href="#">Contact Us</a></li>
+						<li><a href="#">Affiliate Info.</a></li>
+						<li><a href="#">Site Map</a></li>
+						<li><a href="#">Report Abuse</a></li>
+						<li><a href="#">Log In</a></li>
+					</ul>
+				</nav>
+				<div class="copyright">
+					<p>13 &copy; DirectLiquidation.com The Recon Group private market place. All rights reserved</p>
+				</div>
+			</div>
+		</footer>
+		<!--footer ends-->
+		<?php wp_footer(); ?>
+	</div>
 </body>
 </html>

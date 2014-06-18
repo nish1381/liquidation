@@ -46,219 +46,7 @@ get_header( 'shop' ); ?>
 			<?php woocommerce_product_loop_start(); ?>
 
 				<?php woocommerce_product_subcategories(); ?>
-
-
-				<!--box active auctions starts-->
-			<!--box product categories starts-->
-			<div class="box product-categories">
-				<h2 class="accessability">Product Categories</h2>
-				<div class="frame">
-					<ul class="tabset">
-						<li><a href="#tab1" class="active">Categories</a></li>
-						<li><a href="#tab2" >Featured</a></li>
-					</ul>
-					<div class="sub"><a href="#">Subscribe</a>
-						<div class="drop">
-							<div class="drop-holder">
-							<script type="text/javascript">
-								//<![CDATA[
-								if (typeof newsletter_check !== "function") {
-								window.newsletter_check = function (f) {
-								    var re = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-]{1,})+\.)+([a-zA-Z0-9]{2,})+$/;
-								    if (!re.test(f.elements["ne"].value)) {
-								        alert("The email is not correct");
-								        return false;
-								    }
-								    if (f.elements["ny"] && !f.elements["ny"].checked) {
-								        alert("You must accept the privacy statement");
-								        return false;
-								    }
-								    return true;
-								}
-								}
-								//]]>
-							</script>
-								<form action="<?php echo get_site_url()?>/wp-content/plugins/newsletter/do/subscribe.php" onsubmit="return newsletter_check(this)" class="subscription-form">
-									<fieldset>
-										<label for="text3"><strong>Subscribe</strong> to our newsletter</label>
-										<input type="text" name="ne" placeholder="Email Address" id="text3">
-										<input type="submit" value="subscribe" class="btn orange">
-									</fieldset>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="tab-list">
-					<div id="tab1" class="tab">
-						<ul class="product-list" itemscope itemtype="http://schema.org/Products">
-							<?php 
-								$args = array(
-								  'taxonomy'     => 'product_cat',
-								  'orderby'      => 'name',
-								  'show_count'   => 0,
-								  'pad_counts'   => 0,
-								  'hierarchical' => 1,
-								  'title_li'     => '',
-								  'hide_empty'   => 0
-								);	
-
-								$all_categories = get_categories( $args );
-								
-								foreach ($all_categories as $cat) {
-	 //var_dump($cat);exit;
-	    							if($cat->category_parent == 0) {
-	    								?>
-
-	    								<li class="hasdrop">
-								<a href="#" itemprop="name"><?php echo $cat->name; ?></a>
-								<section class="drop">
-									<div class="drop-holder">
-										<div class="holder">
-											<div class="electronics">
-												<h3><?php echo $cat->name; ?></h3>
-												<ul itemscope itemtype="http://schema.org/ProductModel">
-													 <?php
-												        $args = array( 'post_type' => 'product', 'posts_per_page' => 4, 'product_cat' => $cat->slug, 'orderby' => 'rand' );
-												        $loop = new WP_Query( $args );
-												   //     var_dump($loop);
-
-												        $i = 0;
-												        while ($loop->have_posts()) : $loop->the_post();
-												        $i++;
-												        $class = '';
-												        if ($i == 2) 
-												        	$class = " sm-hidden";
-												       	else if ($i == 3)
-												       		$class = " m-hidden";
-												       	else if ($i == 4) 
-												       		$class =" l-hidden";
-
-
-												        ?>
-												        <li class="cell-<?php echo $i, $class; ?>">
-												        	<a href="<?php get_permalink();?>">
-													        	<?php the_post_thumbnail(); ?>
-																<span itemprop="name"><?php echo esc_attr($loop->post->post_title); ?></span>
-															</a>
-														</li>
-												        <?php endwhile;wp_reset_query(); ?>
-												</ul>
-											</div>
-											<div class="categories" itemscope itemtype="http://schema.org/ProductModel">
-												<h4>Additional Sub-categories</h4>
-												<div class="holder">
-													<?php
-
-												 $subcategories = get_categories('taxonomy=product_cat&child_of=' . $cat->term_id . '&hide_empty');
-													$i = 0;
-													//var_dump($subcategories);
-													?><ul>
-													<?php
-													foreach ($subcategories as $sub) {
-														$class  = '';
-
-														/*if (0 == $i % 3) $class = "m-hidden";
-														if (1 == $i % 3) $class = "sm-hidden";
-														if (2 == $i % 3) $class = "sm-hidden";
- 														*/
-														?>
-
-													
-													<li class="<?php echo $class; ?>"><a href="<?php get_category_link($sub->term_id); ?>" itemprop="name"><?php echo $sub->name ;?></a></li>
-
-													<?php 
-														$i++;
-														if (0 == $i % 3) {
-															?>
-													</ul><ul>
-
-														<?php	
-														} 
-													}
-													?>
-												</ul>
-													
-													<a href="#" class="more">see all</a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</section> 
-							</li>
-	    								<?php
-	    								
-	    							}
-	    						}
-							?>
-							
-							
-						</ul>
-						<a href="#" class="all">see all categories</a>
-					</div>
-
-					<div id="tab2" class="tab">
-						<h3 class="accessability">Featured products</h3>
-
-
-						<section class="featured-products-block" itemscope itemtype="http://schema.org/Offer">
-							<ul class="featured-list">
-
-								
-
-								<?php 
-
-								$args = array( 
-									'post_status' => 'publish',
-									'post_type' => 'product',
-									'meta_key' => '_featured',
-									'meta_value' => 'yes',
-									'posts_per_page' => 6
-									);
-
-								$my_query = new WP_Query( $args);
-								$i = 0;
- 								while ($my_query ->have_posts()) : $my_query ->the_post();
- 								 $i ++;
- 								 $product = get_product( get_the_ID() );
- 							//	 var_dump($product);
-							
-
-?>
-							
-								<li class="cell-<?php echo $i;?>">
-									<div class="container-holder">
-										<div class="col">
-											<?php $url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );?>
-											<a href="<?php get_permalink();?>">
-													<img src="<?php echo $url?>" width="74" height="55" alt="" itemprop="image">
-											<a href="#" class="btn green" itemprop="url">BID NOW!</a>
-										</div>
-										<div class="holder">
-											<h4 itemprop="name"><a href="<?php get_permalink();?>"><?php showReadMore($my_query->post->post_title, 53); ?></a></h4>
-											<span itemprop="price">MRSP: $<?php echo   $product->get_price();?></span>
-										</div>
-									</div>
-								</li>
-							<?php
-							if (0 == $i % 3) :
-								?>
-						</ul>
-								<ul class="featured-list sm-hidden">
-						<?php endif;	endwhile; ?>
-
-							</ul>				
-
-							
-							<div class="holder-alt"><a href="#" class="more">see all</a></div>
-						</section>
-					</div>
-				</div>
-			</div>
-
-
-
-
+				
 
 				<?php while ( have_posts() ) : the_post(); ?>
 
@@ -301,5 +89,126 @@ get_header( 'shop' ); ?>
 		 */
 		do_action( 'woocommerce_sidebar' );
 	?>
+
+
+				<!--box popular categories starts-->
+			<div class="box popular-categories">
+				<h2>Popular Categories</h2>
+				<div class="holder">
+
+					<?php
+						$args = array(
+						  'taxonomy'     => 'product_cat',
+						  'orderby'      => 'name',
+						  'show_count'   => 0,
+						  'pad_counts'   => 0,
+						  'hierarchical' => 1,
+						  'title_li'     => '',
+						  'hide_empty'   => 0,
+						  'number'	 => 7
+						);
+
+						$all_categories = get_categories( $args );
+
+						foreach ($all_categories as $cat) {
+
+							$thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
+						    $image = wp_get_attachment_url( $thumbnail_id );?>
+
+						    <?php
+								$the_cat = get_the_category();
+								$category_name = $the_cat[0]->cat_name;
+								$category_description = $the_cat[0]->category_description;
+								$category_link = get_category_link( $the_cat[0]->cat_ID );
+								?>
+
+							<div class="cell-1" itemscope itemtype="http://schema.org/Product">
+								<a href="<?php echo $category_link ?>"><img src="<?php echo $image?>" width="62" height="50" alt="" itemprop="image"><span itemprop="name"><?php echo $cat->name;?></span></a>
+							</div>
+						<?php }?>
+
+				</div>
+			</div>
+			<!--box popular categories ends-->
+
+
+			<div class="box">
+				<section class="testimonials">
+					<h2>Customer testimonials</h2>
+
+					<?php
+					//WordPress loop for custom post type
+					 $my_query = new WP_Query('post_type=dl_testimonial&posts_per_page=3');
+					      while ($my_query->have_posts()) : $my_query->the_post(); ?>
+					 <blockquote>
+						<q><?php the_content(); ?></q>
+						<cite><?php echo get_post_meta($post->ID, 'author', true )?> - <span><?php echo get_post_meta($post->ID, 'regency', true )?></span></cite>
+					</blockquote>
+					<!-- <blockquote class="l-hidden">
+						<q><?php the_content(); ?></q>
+						<cite><?php echo get_post_meta($post->ID, 'author', true )?> - <span><?php echo get_post_meta($post->ID, 'author', true )?></span></cite>
+					</blockquote> -->
+
+					<?php endwhile;  wp_reset_query(); ?>
+				</section>
+				<section class="press l-hidden">
+					<h2>Press</h2>
+
+
+					<?php
+					//WordPress loop for custom post type
+					$my_query = new WP_Query('post_type=dl_blog&posts_per_page=3');
+					    while ($my_query->have_posts()) : $my_query->the_post(); ?>
+					<article class="news" itemscope itemtype="http://schema.org/NewsArticle">
+						<time datetime="13-04-16" itemprop="datePublished"><?php the_time('g:i:s') ?></time>
+						<h3 itemprop="headline"><?php the_title()?></h3>
+						<p itemprop="articleBody"><?php the_content()?></p>
+						<div class="holder">
+							<a href="<?php the_permalink()?>" class="more">read more ...</a>
+						</div>
+					</article>
+
+						<?php endwhile;  wp_reset_query(); ?>
+				</section>
+			</div>
+			<div class="box xl-hidden l-visible press">
+				<section class="press">
+					<h2>Press</h2>
+					<div class="holder-alt">
+						<article class="news">
+							<time datetime="13-04-16">16.04.13</time>
+							<h3>Target awards The Recon Group</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiu tem ipsum dolor sit amet, consectetur adipisicing elit consect etur adipisicing elit, sed do eiu tem ipsum dolor sit amet ...</p>
+							<div class="holder">
+								<a href="more" class="more">read more ...</a>
+							</div>
+						</article>
+						<article class="news">
+							<time datetime="13-04-16">16.04.13</time>
+							<h3>Target awards The Recon Group</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiu tem ipsum dolor sit amet, consectetur adipisicing elit consect etur adipisicing elit, sed do eiu tem ipsum dolor sit amet ...</p>
+							<div class="holder">
+								<a href="more" class="more">read more ...</a>
+							</div>
+						</article>
+						<article class="news">
+							<time datetime="13-04-16">16.04.13</time>
+							<h3>Target awards The Recon Group</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiu tem ipsum dolor sit amet, consectetur adipisicing elit  ...</p>
+							<div class="holder">
+								<a href="more" class="more">read more ...</a>
+							</div>
+						</article>
+					</div>
+				</section>
+			</div>
+			<!--box testimonial ends-->
+			<!--social list starts-->
+			<ul class="social-list">
+				<li class="facebook"><a href="#">facebook</a></li>
+				<li class="twitter"><a href="#">twitter</a></li>
+				<li class="google"><a href="#">google</a></li>
+			</ul>
+			<!--social list ends-->
 
 <?php get_footer( 'shop' ); ?>

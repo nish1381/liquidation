@@ -8,3 +8,8 @@
  */
 ?>
 </ul>
+<div class="holder">
+					<a href="#" class="more">view more listings</a>
+				</div>
+			</div>
+			

@@ -16,7 +16,7 @@ global $woocommerce, $wp_query;
 if ( ! woocommerce_products_will_display() )
 	return;
 ?>
-<p class="woocommerce-result-count">
+<!-- <p class="woocommerce-result-count">
 	<?php
 	$paged    = max( 1, $wp_query->get( 'paged' ) );
 	$per_page = $wp_query->get( 'posts_per_page' );
@@ -32,4 +32,4 @@ if ( ! woocommerce_products_will_display() )
 		printf( _x( 'Showing %1$d–%2$d of %3$d results', '%1$d = first, %2$d = last, %3$d = total', 'woocommerce' ), $first, $last, $total );
 	}
 	?>
-</p>
+</p> -->

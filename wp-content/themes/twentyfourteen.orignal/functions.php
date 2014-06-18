@@ -1,40 +1,19 @@
-<?php
-/**
- * Twenty Fourteen functions and definitions
- *
- * Set up the theme and provides some helper functions, which are used in the
- * theme as custom template tags. Others are attached to action and filter
- * hooks in WordPress to change core functionality.
- *
- * When using a child theme you can override certain functions (those wrapped
- * in a function_exists() call) by defining them first in your child theme's
- * functions.php file. The child theme's functions.php file is included before
- * the parent theme's file, so the child theme functions would be used.
- *
- * @link http://codex.wordpress.org/Theme_Development
- * @link http://codex.wordpress.org/Child_Themes
- *
- * Functions that are not pluggable (not wrapped in function_exists()) are
- * instead attached to a filter or action hook.
- *
- * For more information on hooks, actions, and filters,
- * @link http://codex.wordpress.org/Plugin_API
- *
- * @package WordPress
- * @subpackage Twenty_Fourteen
- * @since Twenty Fourteen 1.0
- */
+<?php 
+	/* Liquidation
+    */
+define('WOOCOMMERCE_USE_CSS', false);
 
 /**
- * Set up the content width value based on the theme's design.
- *
- * @see twentyfourteen_content_width()
- *
- * @since Twenty Fourteen 1.0
+
+ * Sets up the content width value based on the theme's design and stylesheet.
+
  */
-if ( ! isset( $content_width ) ) {
-	$content_width = 474;
-}
+
+if ( ! isset( $content_width ) )
+	$content_width = 604;
+
+
+
 
 /**
  * Twenty Fourteen only works in WordPress 3.6 or later.
@@ -67,11 +46,6 @@ function twentyfourteen_setup() {
 	 */
 	load_theme_textdomain( 'twentyfourteen', get_template_directory() . '/languages' );
 
-	// This theme styles the visual editor to resemble the theme style.
-	add_editor_style( array( 'css/editor-style.css', twentyfourteen_font_url() ) );
-
-	// Add RSS feed links to <head> for posts and comments.
-	add_theme_support( 'automatic-feed-links' );
 
 	// Enable support for Post Thumbnails, and declare two sizes.
 	add_theme_support( 'post-thumbnails' );
@@ -89,7 +63,7 @@ function twentyfourteen_setup() {
 	 * to output valid HTML5.
 	 */
 	add_theme_support( 'html5', array(
-		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
+		'search-form', 'comment-form', 'comment-list',
 	) );
 
 	/*
@@ -121,6 +95,8 @@ add_action( 'after_setup_theme', 'twentyfourteen_setup' );
  * Adjust content_width value for image attachment template.
  *
  * @since Twenty Fourteen 1.0
+ *
+ * @return void
  */
 function twentyfourteen_content_width() {
 	if ( is_attachment() && wp_attachment_is_image() ) {
@@ -162,33 +138,41 @@ function twentyfourteen_has_featured_posts() {
  * Register three Twenty Fourteen widget areas.
  *
  * @since Twenty Fourteen 1.0
+ *
+ * @return void
  */
 function twentyfourteen_widgets_init() {
 	require get_template_directory() . '/inc/widgets.php';
 	register_widget( 'Twenty_Fourteen_Ephemera_Widget' );
-
 	register_sidebar( array(
-		'name'          => __( 'Primary Sidebar', 'twentyfourteen' ),
+		'name' => __( 'Utility Menu', 'toolbox' ),
+		'id' => 'utility-nav',
+		'description' => __( 'An optional secondary menu located above the header', 'toolbox' ),
+		'before_widget' => '<div class="widget %2$s">',
+		'after_widget' => "</div>",
+	) );
+	register_sidebar( array(
+		'name'          => __( 'Primary Sidebar', 'Liquidation' ),
 		'id'            => 'sidebar-1',
-		'description'   => __( 'Main sidebar that appears on the left.', 'twentyfourteen' ),
+		'description'   => __( 'Main sidebar that appears on the left.', 'Liquidation' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Content Sidebar', 'twentyfourteen' ),
+		'name'          => __( 'Content Sidebar', 'Liquidation' ),
 		'id'            => 'sidebar-2',
-		'description'   => __( 'Additional sidebar that appears on the right.', 'twentyfourteen' ),
+		'description'   => __( 'Additional sidebar that appears on the right.', 'Liquidation' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
 	) );
 	register_sidebar( array(
-		'name'          => __( 'Footer Widget Area', 'twentyfourteen' ),
+		'name'          => __( 'Footer Widget Area', 'Liquidation' ),
 		'id'            => 'sidebar-3',
-		'description'   => __( 'Appears in the footer section of the site.', 'twentyfourteen' ),
+		'description'   => __( 'Appears in the footer section of the site.', 'Liquidation' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h1 class="widget-title">',
@@ -210,7 +194,7 @@ function twentyfourteen_font_url() {
 	 * Translators: If there are characters in your language that are not supported
 	 * by Lato, translate this to 'off'. Do not translate into your own language.
 	 */
-	if ( 'off' !== _x( 'on', 'Lato font: on or off', 'twentyfourteen' ) ) {
+	if ( 'off' !== _x( 'on', 'Lato font: on or off', 'Liquidation' ) ) {
 		$font_url = add_query_arg( 'family', urlencode( 'Lato:300,400,700,900,300italic,400italic,700italic' ), "//fonts.googleapis.com/css" );
 	}
 
@@ -221,60 +205,21 @@ function twentyfourteen_font_url() {
  * Enqueue scripts and styles for the front end.
  *
  * @since Twenty Fourteen 1.0
+ *
+ * @return void
  */
 function twentyfourteen_scripts() {
-	// Add Lato font, used in the main stylesheet.
-	wp_enqueue_style( 'twentyfourteen-lato', twentyfourteen_font_url(), array(), null );
-
-	// Add Genericons font, used in the main stylesheet.
-	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.0.2' );
-
-	// Load our main stylesheet.
-	wp_enqueue_style( 'twentyfourteen-style', get_stylesheet_uri(), array( 'genericons' ) );
-
-	// Load the Internet Explorer specific stylesheet.
-	wp_enqueue_style( 'twentyfourteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentyfourteen-style', 'genericons' ), '20131205' );
-	wp_style_add_data( 'twentyfourteen-ie', 'conditional', 'lt IE 9' );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-
-	if ( is_singular() && wp_attachment_is_image() ) {
-		wp_enqueue_script( 'twentyfourteen-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20130402' );
-	}
-
-	if ( is_active_sidebar( 'sidebar-3' ) ) {
-		wp_enqueue_script( 'jquery-masonry' );
-	}
-
-	if ( is_front_page() && 'slider' == get_theme_mod( 'featured_content_layout' ) ) {
-		wp_enqueue_script( 'twentyfourteen-slider', get_template_directory_uri() . '/js/slider.js', array( 'jquery' ), '20131205', true );
-		wp_localize_script( 'twentyfourteen-slider', 'featuredSliderDefaults', array(
-			'prevText' => __( 'Previous', 'twentyfourteen' ),
-			'nextText' => __( 'Next', 'twentyfourteen' )
-		) );
-	}
-
-	wp_enqueue_script( 'twentyfourteen-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20140319', true );
+//	wp_enqueue_script( 'twentyfourteen-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20131209', true );
 }
 add_action( 'wp_enqueue_scripts', 'twentyfourteen_scripts' );
-
-/**
- * Enqueue Google fonts style to admin screen for custom header display.
- *
- * @since Twenty Fourteen 1.0
- */
-function twentyfourteen_admin_fonts() {
-	wp_enqueue_style( 'twentyfourteen-lato', twentyfourteen_font_url(), array(), null );
-}
-add_action( 'admin_print_scripts-appearance_page_custom-header', 'twentyfourteen_admin_fonts' );
 
 if ( ! function_exists( 'twentyfourteen_the_attached_image' ) ) :
 /**
  * Print the attached image with a link to the next attached image.
  *
  * @since Twenty Fourteen 1.0
+ *
+ * @return void
  */
 function twentyfourteen_the_attached_image() {
 	$post                = get_post();
@@ -342,6 +287,8 @@ if ( ! function_exists( 'twentyfourteen_list_authors' ) ) :
  * Print a list of all site contributors who published at least one post.
  *
  * @since Twenty Fourteen 1.0
+ *
+ * @return void
  */
 function twentyfourteen_list_authors() {
 	$contributor_ids = get_users( array(
@@ -368,7 +315,7 @@ function twentyfourteen_list_authors() {
 				<p class="contributor-bio">
 					<?php echo get_the_author_meta( 'description', $contributor_id ); ?>
 				</p>
-				<a class="button contributor-posts-link" href="<?php echo esc_url( get_author_posts_url( $contributor_id ) ); ?>">
+				<a class="contributor-posts-link" href="<?php echo esc_url( get_author_posts_url( $contributor_id ) ); ?>">
 					<?php printf( _n( '%d Article', '%d Articles', $post_count, 'twentyfourteen' ), $post_count ); ?>
 				</a>
 			</div><!-- .contributor-summary -->
@@ -449,7 +396,7 @@ add_filter( 'body_class', 'twentyfourteen_body_classes' );
  * @return array The filtered post class list.
  */
 function twentyfourteen_post_classes( $classes ) {
-	if ( ! post_password_required() && ! is_attachment() && has_post_thumbnail() ) {
+	if ( ! post_password_required() && has_post_thumbnail() ) {
 		$classes[] = 'has-post-thumbnail';
 	}
 
@@ -475,7 +422,7 @@ function twentyfourteen_wp_title( $title, $sep ) {
 	}
 
 	// Add the site name.
-	$title .= get_bloginfo( 'name', 'display' );
+	$title .= get_bloginfo( 'name' );
 
 	// Add the site description for the home/front page.
 	$site_description = get_bloginfo( 'description', 'display' );
@@ -510,3 +457,354 @@ require get_template_directory() . '/inc/customizer.php';
 if ( ! class_exists( 'Featured_Content' ) && 'plugins.php' !== $GLOBALS['pagenow'] ) {
 	require get_template_directory() . '/inc/featured-content.php';
 }
+
+
+/**
+ * @param string $where
+ * @param WP_Query $query
+ * @return string
+ */
+function dl_posts_where_search($where, $query) {
+    /** @var wpdb $wpdb */
+    global $wpdb;
+    $searchQuery = $query->get('_dl_search_query');
+    $searchDescriptions = $query->get('_dl_search_descriptions');
+    if (!empty($searchQuery)) {
+        $likeValue = '%'.esc_sql(like_escape($searchQuery)).'%';
+        $likeQuery = sprintf("%s.post_title LIKE '%s'", $wpdb->posts, $likeValue);
+        if ($searchDescriptions) {
+            $likeQuery .= sprintf(" OR %s.post_content LIKE '%s'", $wpdb->posts, $likeValue);
+            $likeQuery .= sprintf(" OR %s.post_excerpt LIKE '%s'", $wpdb->posts, $likeValue);
+        }
+        $where .= ' AND ('.$likeQuery.')';
+    }
+    return $where;
+}
+
+function dl_posts_joins_for_my_offers($join) {
+    /** @var wpdb $wpdb */
+    global $wpdb;
+    if ($join != '') {
+        $join .= ' ';
+    }
+    $join .= "JOIN $wpdb->posts posts_parent ON $wpdb->posts.post_parent = posts_parent.ID AND posts_parent.post_status = 'publish' LEFT JOIN $wpdb->postmeta post_parent_meta ON post_parent_meta.post_id = posts_parent.ID AND post_parent_meta.meta_key='_dl_status'";
+    return $join;
+}
+
+function dl_posts_where_for_my_offers($where) {
+    if ($where != '') {
+        $where .= ' AND ';
+    }
+    $where .= '(post_parent_meta.meta_value IS NULL OR post_parent_meta.meta_value != "cancelled")';
+    return $where;
+}
+
+function dl_products_page_link($page, $params) {
+    $params['page'] = $page;
+    return '/availability-list/?'.build_query($params);
+}
+
+function dl_my_auctions_page_link($page, $params) {
+    $params['page'] = $page;
+    return '/my-auctions/?'.build_query($params);
+}
+
+function dl_my_auctions_offers_page_link($page, $params) {
+    $params['page'] = $page;
+    return '/offers-manage/?'.build_query($params);
+}
+
+function dl_my_auctions_offers_offers_page_link($page, $params) {
+    $params['page'] = $page;
+    return '/offers-manage-list/?'.build_query($params);
+}
+
+function dl_my_wishes_page_link($page, $params) {
+    $params['page'] = $page;
+    return '/watch-list/?'.build_query($params);
+}
+
+function dl_my_offers_page_link($page, $params) {
+    $params['page'] = $page;
+    return '/offers/?'.build_query($params);
+}
+
+function dl_get_country_title($id) {
+    $countries = get_option("dl_countries", array());
+    return isset($countries[$id]) ? $countries[$id]['name'] : '';
+}
+
+function dl_get_state_title($id) {
+    $states = get_option("dl_states", array());
+    return isset($states[$id]) ? $states[$id]['name'] : '';
+}
+
+function dl_enqueue_scripts() {
+    wp_enqueue_script('jquery');
+}
+add_action('wp_enqueue_scripts', 'dl_enqueue_scripts');
+
+function dl_html_tag($name, $attributes, $content = '') {
+    $result = "<$name";
+    foreach ($attributes as $attr => $value) {
+        $result .= sprintf(' %s="%s"', $attr, esc_attr($value));
+    }
+    if (is_null($content)) {
+        $result .=  " />";
+    } else {
+        $result .=  ">$content</$name>";
+    }
+    return $result;
+}
+
+function dl_html_select($params) {
+    $options = isset($params['options']) ? $params['options'] : array();
+    $selectedValue = isset($params['value']) ? $params['value'] : array();
+    $content = array();
+    foreach ($options as $value => $data) {
+        $attr = array('value' => $value);
+        if ($value == $selectedValue) {
+            $attr['selected'] = 'selected';
+        }
+        if (is_array($data)) {
+            $title = $data['title'];
+            $attr = array_merge($attr, $data['attr']);
+        } else {
+            $title = $data;
+        }
+        $content[] = dl_html_tag('option', $attr, esc_html($title));
+    }
+    $attr = isset($params['attr']) ? $params['attr'] : array();
+    return dl_html_tag('select', $attr, implode('', $content));
+}
+
+function dl_product_bid_link(DL_Product $product) {
+    return get_permalink($product->getPost());
+    //return sprintf('/offers-short/?id=%d', $product->getPost()->ID);
+}
+
+function dl_product_seller_link(DL_Product $product) {
+    return '';
+}
+
+function dl_product_seller_name(DL_Product $product) {
+    $ownerId = $product->getPost()->post_author;
+    $owner = get_userdata($ownerId);
+    if (empty($owner)) {
+        return '&nbsp;';
+    }
+    return $owner->user_login;
+}
+
+function dl_product_category(DL_Product $product) {
+    $category = wp_get_post_terms($product->getPost()->ID, 'product_cat');
+    return empty($category) ? '' : $category[0]->name;
+}
+
+function dl_render_new_product_option($option) {
+    $name = '_dl_option_'.$option['id'];
+?>
+    <div class="col">
+        <label for="<?php echo esc_attr($name); ?>"><?php echo esc_html($option['name']); ?>:</label>
+        <?php $type = isset($option['type']) ? $option['type'] : 'string'; ?>
+        <?php switch ($type) {
+            case 'bool':
+                $attr = array(
+                    'name' => $name,
+                    'type' => 'checkbox',
+                    'id' => $name,
+                    'value' => '1'
+                );
+                if (isset($_POST[$name]) && $_POST[$name] == '1') {
+                    $attr['checked'] = 'checked';
+                }
+                echo dl_html_tag('input', $attr, null);
+                break;
+            case 'enum':
+                echo dl_html_select(array(
+                    'value' => isset($_POST[$name]) ? $_POST[$_POST[$name]] : '',
+                    'options' => array_combine($option['values'], $option['values']),
+                    'attr' => array(
+                        'id' => $name,
+                        'name' => $name,
+                    )
+                ));
+                break;
+            default:
+                echo dl_html_tag('input', array(
+                    'name' => $name,
+                    'type' => 'text',
+                    'id' => $name,
+                    'value' => isset($_POST[$name]) ? $_POST[$name] : ''
+                ), null);
+        } ?>
+   </div>
+<?php
+}
+
+function dl_email_alerts_checkbox($name, $title) {
+    $user = wp_get_current_user();
+    if (empty($user)) {
+        return '';
+    }
+    $attr = array(
+        'type' => 'checkbox',
+        'value' => '1',
+        'name' => $name,
+        'id' => $name
+    );
+    if ($user->get($name) == '1') {
+        $attr['checked'] = 'checked';
+    }
+    return dl_html_tag('input', $attr, null) . dl_html_tag('label', array('for' => $name), $title);
+}
+
+function dl_blog_the_category() {
+    global $post;
+    $postTerms = wp_get_object_terms($post->ID, 'dl_blog_categories');
+    $terms = array();
+    foreach ($postTerms as $term) {
+        $terms[] = sprintf('<a href="%2$s">%1$s</a>', esc_html($term->name), esc_attr(get_term_link($term)));
+    }
+    echo implode($terms, ', ');
+}
+
+function dl_blog_get_authors() {
+    global $wpdb;
+
+    $defaults = array(
+        'orderby' => 'name', 'order' => 'ASC', 'number' => '',
+        'optioncount' => false, 'exclude_admin' => true,
+        'show_fullname' => false, 'hide_empty' => true,
+        'feed' => '', 'feed_image' => '', 'feed_type' => '', 'echo' => true,
+        'style' => 'list', 'html' => true
+    );
+
+    $args = wp_parse_args( '', $defaults );
+    extract( $args, EXTR_SKIP );
+
+    $return = '';
+
+    $query_args = wp_array_slice_assoc( $args, array( 'orderby', 'order', 'number' ) );
+    $query_args['fields'] = 'ids';
+    $authors = get_users( $query_args );
+
+    $author_count = array();
+    foreach ( (array) $wpdb->get_results("SELECT DISTINCT post_author, COUNT(ID) AS count FROM $wpdb->posts WHERE post_type = 'dl_blog' AND " . get_private_posts_cap_sql( 'post' ) . " GROUP BY post_author") as $row )
+        $author_count[$row->post_author] = $row->count;
+
+    $result = array();
+
+    foreach ( $authors as $author_id ) {
+        $author = get_userdata( $author_id );
+
+        if ( $exclude_admin && 'admin' == $author->display_name )
+            continue;
+
+        $posts = isset( $author_count[$author->ID] ) ? $author_count[$author->ID] : 0;
+
+        if ( !$posts && $hide_empty )
+            continue;
+        $author->count = $posts;
+        $result[] = $author;
+    }
+    return $result;
+}
+
+
+function categpry_select() {
+	$args = array(
+	  'taxonomy'     => 'product_cat',
+	  'orderby'      => 'name',
+	  'show_count'   => 0,
+	  'pad_counts'   => 0,
+	  'hierarchical' => 1,
+	  'title_li'     => '',
+	  'hide_empty'   => 0
+	);	
+
+	$all_categories = get_categories( $args );
+	?>
+	<select id="with-placeholder">
+							<option value="value-1" selected>All Categories</option>
+							<?php 
+							
+						
+	foreach ($all_categories as $cat) {
+	 
+	    if($cat->category_parent == 0) {
+	    	?>
+
+	    	<option value="<?php echo $cat->term_id; ?>"><?php echo $cat->name; ?></option>
+
+	    	<?php
+	    }
+	}
+	?>
+	</select>
+	<?php
+
+}
+  
+function showReadMore($title, $len) {
+	echo esc_attr(substr($title, 0, 53));
+	if (strlen($title) > $len ) {
+		echo "...";	
+	}		
+}
+
+// function register_link_url( $url ) {
+//   	if ( ! is_user_logged_in() ) {
+// 		if ( get_option('users_can_register') )
+// 			$url = '<li><a href="' . get_bloginfo( 'url' ) . "/register-3" . '">' . __('Register') . '</a></li>';
+// 		else
+// 			$url = '';
+// 	} else {
+// 		$url = '<li><a href="' . admin_url() . '">' . __('Site Admin') . '</a></li>';
+// 	}
+
+//    return $url;
+//    }
+// add_filter( 'register', 'register_link_url', 10, 2 );
+
+/**
+ * Example showing how to limit search results to pages and posts, and not allowing specific posts/pages
+ */
+
+
+
+
+
+// function jc_filter_search_results($query) {
+// 	// check to see if search
+// 	if ($query->is_search) {
+// 		// only search the paeg post type
+// 		$query->set('post_type', 'product');
+// 		// dont search these pages
+// 	}
+// 	return $query;
+// }
+// add_filter('pre_get_posts','jc_filter_search_results');
+
+
+// function jc_search_post_excerpt($where = ''){
+ 
+//     global $wp_the_query;
+ 
+//     // escape if not woocommerce search query
+//     if ( empty( $wp_the_query->query_vars['wc_query'] ) || empty( $wp_the_query->query_vars['s'] ) )
+//             return $where;
+ 
+//     $where = preg_replace("/post_title LIKE ('%[^%]+%')/", "post_title LIKE $1) 
+//                 OR (post_content LIKE $1)
+//                 OR (jcmt1.meta_key = '_sku' AND CAST(jcmt1.meta_value AS CHAR) LIKE $1 ", $where);
+ 
+//     return $where;
+// }
+add_filter( 'woocommerce_redirect_single_search_result', '__return_false' );
+
+
+?>
+
+
+
