@@ -2,7 +2,7 @@
 	/* Liquidation
     */
 define('WOOCOMMERCE_USE_CSS', false);
-
+add_theme_support( 'woocommerce' );
 /**
 
  * Sets up the content width value based on the theme's design and stylesheet.
