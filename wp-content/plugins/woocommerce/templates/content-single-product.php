@@ -109,6 +109,38 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 									<!-- <input type="submit" value="PLACE A BID" class="btn green"> -->
 								</fieldset>	
 							</form>
+
+
+
+							<form style="display:none" class="buy-now cart" method="post" enctype='multipart/form-data' data-product_id="<?php echo $post->ID; ?>">
+							<?php 
+							    global $woocommerce, $product, $post;
+							    do_action('woocommerce_before_add_to_cart_button');
+						        
+							 	if ( ! $product->is_sold_individually() )
+							 			woocommerce_quantity_input( array(
+							 				'min_value' => apply_filters( 'woocommerce_quantity_input_min', 1, $product ),
+							 				'max_value' => apply_filters( 'woocommerce_quantity_input_max', $product->backorders_allowed() ? '' : $product->get_stock_quantity(), $product )
+							 			) );
+							 ?>
+
+						 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
+
+						 	<!-- <button type="submit" class="single_add_to_cart_button button alt"><?php echo apply_filters('single_add_to_cart_text',sprintf(__( 'Buy now for %s', 'wc_simple_auctions' ),woocommerce_price($product->regular_price)), $product->product_type); ?></button> -->
+						 	<button type="submit" class="single_add_to_cart_button button alt btn green"><?php echo apply_filters('single_add_to_cart_text',sprintf(__( 'Buy now for %s', 'wc_simple_auctions' ),woocommerce_price($product->get_curent_bid())), $product->product_type); ?></button>
+						 	
+							
+							<div>
+								<input type="hidden" name="add-to-cart" value="<?php echo $product->id; ?>" />
+								<input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" />
+							</div>
+
+							<?php do_action('woocommerce_after_add_to_cart_button'); ?>
+
+						</form>
+
+
+
 							<?php do_action('woocommerce_after_bid_form'); ?>
 						</div>			 	
 
@@ -388,8 +420,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 
 
-
-
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<?php
@@ -436,3 +466,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 <!-- </div> --><!-- #product-<?php the_ID(); ?> -->
 
 <?php //do_action( 'woocommerce_after_single_product' ); ?>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery('.woocommerce-message').hide();
+		if((jQuery('.woocommerce-message').text()) =='No need to bid. Your bid is winning! '){
+			jQuery('.auction_form').hide();
+			jQuery('.buy-now').show();
+		}
+		if(jQuery('.buy-now').is(':visible')){
+			jQuery('.reserve').hide();
+		}
+	});
+</script>
