@@ -16,7 +16,7 @@
 
 get_header(); ?>
 
-<div id="main-content" class="main-content">
+<div id="main-content" class="main-content box active-auctions alt-layout">
 
 <?php
 	if ( is_front_page() && twentyfourteen_has_featured_posts() ) {
