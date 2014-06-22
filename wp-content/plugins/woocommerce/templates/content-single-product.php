@@ -80,6 +80,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 								<p class="reverse"><?php echo apply_filters('reverse_auction_text', __( "This is reverse auction.", 'wc_simple_auctions' )); ?></p>
 							<?php endif; ?>	
 							<?php do_action('woocommerce_before_bid_form'); ?>
+
+							<?php if ($product->auction_bid_count = 0){?>
 							<form class="auction_form cart  entry-form" method="post" enctype='multipart/form-data' data-product_id="<?php echo $post->ID; ?>">
 								<fieldset>
 									<?php do_action('woocommerce_before_bid_button'); ?>
@@ -109,10 +111,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 									<!-- <input type="submit" value="PLACE A BID" class="btn green"> -->
 								</fieldset>	
 							</form>
+							<?php }else{?>
 
-
-
-							<form style="display:none" class="buy-now cart" method="post" enctype='multipart/form-data' data-product_id="<?php echo $post->ID; ?>">
+							<form  class="buy-now cart" method="post" enctype='multipart/form-data' data-product_id="<?php echo $post->ID; ?>">
 							<?php 
 							    global $woocommerce, $product, $post;
 							    do_action('woocommerce_before_add_to_cart_button');
@@ -138,6 +139,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 							<?php do_action('woocommerce_after_add_to_cart_button'); ?>
 
 						</form>
+
+						<?php }?>
 
 
 
@@ -468,13 +471,17 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 <?php //do_action( 'woocommerce_after_single_product' ); ?>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
-		jQuery('.woocommerce-message').hide();
-		if((jQuery('.woocommerce-message').text()) =='No need to bid. Your bid is winning! '){
-			jQuery('.auction_form').hide();
-			jQuery('.buy-now').show();
-		}
-		if(jQuery('.buy-now').is(':visible')){
-			jQuery('.reserve').hide();
-		}
+		// jQuery('.woocommerce-message').hide();
+		// if((jQuery('.woocommerce-message').text()) =='No need to bid. Your bid is winning! '){
+		// 	jQuery('.auction_form').hide();
+		// 	jQuery('.buy-now').show();
+		// }
+		// if(jQuery('.buy-now').is(':visible')){
+		// 	jQuery('.reserve').hide();
+		// }
+
+		// if(jQuery('.woocommerce-message').length > 0){
+		// 	//alert('lol');
+		// }
 	});
 </script>
