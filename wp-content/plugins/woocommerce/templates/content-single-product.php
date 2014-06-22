@@ -80,8 +80,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 								<p class="reverse"><?php echo apply_filters('reverse_auction_text', __( "This is reverse auction.", 'wc_simple_auctions' )); ?></p>
 							<?php endif; ?>	
 							<?php do_action('woocommerce_before_bid_form'); ?>
-
-							<?php if ($product->auction_bid_count = 0){?>
+							<?php $cur = $product->get_curent_bid() ;$start =  get_post_meta($post->ID, '_auction_start_price', true ) ?>
+							<?php if ($cur  == $start){?>
 							<form class="auction_form cart  entry-form" method="post" enctype='multipart/form-data' data-product_id="<?php echo $post->ID; ?>">
 								<fieldset>
 									<?php do_action('woocommerce_before_bid_button'); ?>
